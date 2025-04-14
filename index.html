@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>YouTube بدون موسيقى</title>
+</head>
+<body>
+  <h1>مشغل يوتيوب بدون موسيقى</h1>
+  <p>أدخل رابط فيديو يوتيوب:</p>
+  <input type="text" id="videoUrl" placeholder="ضع رابط الفيديو هنا" />
+  <button onclick="loadVideo()">عرض الفيديو</button>
+
+  <div id="player" style="margin-top: 20px;"></div>
+
+  <script>
+    function extractVideoId(url) {
+      const match = url.match(/(?:youtube\.com\/.*v=|youtu\.be\/)([^&]+)/);
+      return match ? match[1] : null;
+    }
+
+    function loadVideo() {
+      const url = document.getElementById('videoUrl').value;
+      const videoId = extractVideoId(url);
+      if (videoId) {
+        document.getElementById('player').innerHTML = `
+          <iframe width="560" height="315" 
+            src="https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=1"
+            frameborder="0" allowfullscreen>
+          </iframe>`;
+      } else {
+        alert("رابط غير صحيح");
+      }
+    }
+  </script>
+</body>
+</html>
