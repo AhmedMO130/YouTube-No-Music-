@@ -1,4 +1,32 @@
 <!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>يوتيوب بدون موسيقى</title>
+</head>
+<body style="text-align: center; font-family: sans-serif;">
+  <h1>يوتيوب بدون موسيقى</h1>
+
+  <!-- نموذج البحث -->
+  <form onsubmit="searchYoutube(); return false;">
+    <input type="text" id="searchInput" placeholder="اكتب ما تريد البحث عنه" style="width: 60%; padding: 8px;">
+    <button type="submit" style="padding: 8px 16px;">بحث</button>
+  </form>
+
+  <!-- مكان عرض الفيديو -->
+  <div id="videoFrame" style="margin-top: 20px;"></div>
+
+  <script>
+    function searchYoutube() {
+      const query = document.getElementById('searchInput').value;
+      const videoUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(query)}`;
+      document.getElementById('videoFrame').innerHTML = `
+        <iframe width="100%" height="400" src="${videoUrl}" frameborder="0"></iframe>
+      `;
+    }
+  </script>
+</body>
+</html><!DOCTYPE html>
 <html lang="ar">
 <head>
   <meta charset="UTF-8">
