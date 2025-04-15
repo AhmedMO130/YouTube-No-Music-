@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>يوتيوب بدون موسيقى</title>
+  <style>
+    body {
+      background-color: #111;
+      color: white;
+      font-family: Tahoma, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    iframe {
+      width: 90%;
+      height: 60vh;
+      border: none;
+      border-radius: 12px;
+      margin-top: 20px;
+    }
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: none;
+      margin-top: 10px;
+    }
+    input {
+      width: 60%;
+    }
+    button {
+      background-color: #ff0000;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>يوتيوب بدون موسيقى</h1>
+  <p>ابحث عن فيديو (مؤقتاً قد يحتوي على موسيقى)</p>
+
+  <input type="text" id="searchInput" placeholder="اكتب ما تريد البحث عنه">
+  <button onclick="searchYouTube()">بحث</button>
+
+  <iframe id="ytPlayer" src="" allowfullscreen></iframe>
+
+  <script>
+    function searchYouTube() {
+      const query = document.getElementById('searchInput').value;
+      const embedUrl = "https://www.youtube.com/embed?listType=search&list=" + encodeURIComponent(query + " بدون موسيقى");
+      document.getElementById('ytPlayer').src = embedUrl;
+    }
+  </script>
+
+  <p>الموقع في مرحلة تجريبية</p>
+</body>
+</html>
