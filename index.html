@@ -1,75 +1,51 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-  <meta charset="UTF-8">
-  <title>يوتيوب بدون موسيقى</title>
-</head>
-<body style="text-align: center; font-family: sans-serif;">
-  <h1>يوتيوب بدون موسيقى</h1>
-
-  <!-- نموذج البحث -->
-  <form onsubmit="searchYoutube(); return false;">
-    <input type="text" id="searchInput" placeholder="اكتب ما تريد البحث عنه" style="width: 60%; padding: 8px;">
-    <button type="submit" style="padding: 8px 16px;">بحث</button>
-  </form>
-
-  <!-- مكان عرض الفيديو -->
-  <div id="videoFrame" style="margin-top: 20px;"></div>
-
-  <script>
-    function searchYoutube() {
-      const query = document.getElementById('searchInput').value;
-      const videoUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(query)}`;
-      document.getElementById('videoFrame').innerHTML = `
-        <iframe width="100%" height="400" src="${videoUrl}" frameborder="0"></iframe>
-      `;
-    }
-  </script>
-</body>
-</html>
-<!DOCTYPE html>
 <html lang="ar">
-<head>
-  <meta charset="UTF-8">
-  <title>يوتيوب بدون موسيقى</title>
-  <style>
-    body {
-      background-color: #111;
-      color: white;
-      font-family: sans-serif;
-      padding: 20px;
-      text-align: center;
-    }
-    input {
-      padding: 10px;
-      width: 80%;
-      max-width: 400px;
-      font-size: 16px;
-    }
-    button {
-      padding: 10px 20px;
-      font-size: 16px;
-      margin-top: 10px;
-    }
-    iframe {
-      margin-top: 20px;
-    }
-  </style>
-</head>
-<body>
-  <h1>يوتيوب بدون موسيقى</h1>
-  <input type="text" id="searchInput" placeholder="ابحث عن فيديو بدون موسيقى" />
-  <button onclick="search()">بحث</button>
-  <div id="videoFrame"></div>
+  <head>
+    <meta charset="UTF-8">
+    <title>يوتيوب بدون موسيقى</title>
+    <style>
+      body {
+        background-color: #111;
+        color: white;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 20px;
+      }
 
-  <script>
-    function search() {
-      const query = document.getElementById('searchInput').value;
-      const videoUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(query + ' بدون موسيقى')}`;
-      document.getElementById('videoFrame').innerHTML = `
-        <iframe width="100%" height="400" src="${videoUrl}" frameborder="0" allowfullscreen></iframe>
-      `;
-    }
-  </script>
-</body>
+      input, button {
+        padding: 10px;
+        font-size: 16px;
+        margin: 10px 0;
+        width: 90%;
+        max-width: 400px;
+      }
+
+      iframe {
+        margin-top: 20px;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>يوتيوب بدون موسيقى</h1>
+    <p>ألصق رابط فيديو يوتيوب بدون موسيقى:</p>
+    <input type="text" id="videoInput" placeholder="أدخل رابط الفيديو" />
+    <button onclick="loadVideo()">تشغيل</button>
+    <div id="videoFrame"></div>
+
+    <script>
+      function loadVideo() {
+        const url = document.getElementById('videoInput').value;
+        const videoId = url.split('v=')[1]?.split('&')[0];
+        if (videoId) {
+          const embedUrl = `https://www.youtube.com/embed/${videoId}`;
+          document.getElementById('videoFrame').innerHTML = `
+            <iframe width="100%" height="400" src="${embedUrl}" frameborder="0" allowfullscreen></iframe>
+          `;
+        } else {
+          alert("الرجاء إدخال رابط صحيح لفيديو يوتيوب");
+        }
+      }
+    </script>
+  </body>
 </html>
